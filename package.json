@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Dani-DEV28/MuscMETA#readme",
   "description": "",
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^4.21.2"
   },
   "devDependencies": {
