@@ -1,31 +1,15 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Music Database</title>
+    <title>Mama's Pizza</title>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" 
-         
-
-    <!-- Stylesheet -->
-    
+   
 </head>
 <body>
 
-            
-            <h1>Music</h1>
-            <p>Number 1 database for music album!</p>
-            <hr>
-            <a id="contact-button" href="#" role="button">Contact Us</a>
-        </header>
-
-        <!-- Form 
-               action: where data will go
-               method: how it will get there 
-        -->
         <form action="thankyou" method="post">
 
             <!-- Contact Info -->
@@ -44,9 +28,25 @@
                     <input type="text" name="email">
                 </label>
 
-                <!-- Place order button -->
-            <button type="submit">Music submit</button
-
             </fieldset>
 
-            <
+            <!-- Pickup or delivery -->
+            <fieldset>
+                <legend>Pick a Song</legend>
+                <label>
+                    <input type="radio" name="method"
+                           value="pickup">Pickup
+                </label>
+                <label>
+                    <input type="radio" name="method"
+                           value="delivery">Download
+                </label>
+            </fieldset>
+
+            
+            <!-- Place order button -->
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+</body>
+</html>
