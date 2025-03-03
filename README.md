@@ -15,4 +15,4 @@ List:
 - having Home button on every page except home.ejs
 
 # For more detail #
-[![GitHub release] (https://docs.google.com/document/d/14A2q0xTq0EOgOX8tkzLCuTij3G9QEfDbVDOA2ZaI9_Y/edit?usp=sharing)
+# [:floppy_disk: INFO] (https://docs.google.com/document/d/14A2q0xTq0EOgOX8tkzLCuTij3G9QEfDbVDOA2ZaI9_Y/edit?usp=sharing)
