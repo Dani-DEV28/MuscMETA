@@ -1,6 +1,7 @@
 # MusicMETA #
 Agenda of thing needed:
 - CSS styling, focus on Mobile look first
+    -> Three base color, default-background, wrapper for the main page, and font
 - SQL database
 - and the UI, and pages need to be added
     -> Result.ejs Page
