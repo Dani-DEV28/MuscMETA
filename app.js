@@ -20,6 +20,11 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
+app.post('/search', async (req, res) => {
+    console.log(req.body.userInput);
+    res.render('searchResult')
+})
+
 //Tell the server to listen on our specified port
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
