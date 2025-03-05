@@ -17,3 +17,9 @@ List:
 
 # For more detail #
 - [INFO] (https://docs.google.com/document/d/14A2q0xTq0EOgOX8tkzLCuTij3G9QEfDbVDOA2ZaI9_Y/edit?usp=sharing)
+
+# Build Commands #
+- npm install -y
+    ^ This is for setup to test
+- npx nodemon
+    ^ This is for launching test enviroment to see changes
