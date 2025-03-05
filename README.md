@@ -26,3 +26,7 @@ List:
 
 # Understand POST and GET #
 - home button use the POST that way user data is passed along the URL
+
+# Current Implementation #
+- Back Button Code:
+    "<button onclick="history.go(-1)">🔙 Go Back</button>"
