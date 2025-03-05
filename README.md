@@ -23,3 +23,6 @@ List:
     ^ This is for setup to test
 - npx nodemon
     ^ This is for launching test enviroment to see changes
+
+# Understand POST and GET #
+- home button use the POST that way user data is passed along the URL
