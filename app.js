@@ -28,8 +28,12 @@ app.post('/', (req, res) => {
 
 app.post('/search', async (req, res) => {
     console.log(req.body.userInput);
-    res.render('searchResult')
-})
+    res.render('searchResult');
+});
+
+app.post('/list', async (req, res) => {
+    res.render('trackList');
+});
 
 //Tell the server to listen on our specified port
 app.listen(PORT, () => {
