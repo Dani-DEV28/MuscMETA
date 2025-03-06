@@ -29,7 +29,7 @@ List:
 - npx nodemon
     - This is for launching test enviroment to see changes
 - setting up .env file
-    -``DB_HOST=localhost
+    - ``DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=1234
 DB_NAME=music_meta
