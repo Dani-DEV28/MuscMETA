@@ -8,14 +8,14 @@ Album Artist
 - Item Count
 
 AlbumSingle
-- ArtistID <-> SpecificID
+- ArtistID <-> SpecificID from AblumArtist
 - AlbumName
 - AlbumID
 - AlbumIMG
 - TrackCount
 
 TrackInfo
-- AlbumID
+- AlbumID <-> Shared from AblumSingle
 - TrackNum
 - TrackName
 - TrackInfo
