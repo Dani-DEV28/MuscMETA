@@ -4,7 +4,7 @@
 
 # List of things #
 - Be sure to make a brach, do not edit in main <br>
-- `git branch [name]`
+    - `git branch [name]`
 <br>
 Agenda of thing needed:
 - CSS styling, focus on Mobile look first
