@@ -21,15 +21,10 @@ body {
 * {
     box-sizing: border-box;
   }
-  
-  body {
-    margin: 0;
-    background-color: darkred;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-  }
+
   
   #main {
-    background-color: white;
+    background-color: grey;
     width: 70%;
     margin: 0 auto 1rem auto;
     padding: 0 1rem 2rem 1rem;
@@ -63,7 +58,7 @@ body {
   
   header h1 {
     font-weight: 600;
-    color: darkgreen;
+    color: red;
     font-size: 3.5rem;
     margin: 0;
   }
