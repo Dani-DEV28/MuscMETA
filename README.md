@@ -3,6 +3,9 @@
 <br>
 
 # List of things #
+- Be sure to make a brach, do not edit in main <br>
+- `git branch [name]`
+<br>
 Agenda of thing needed:
 - CSS styling, focus on Mobile look first
     - Three base color, default-background, wrapper for the main page, and font
