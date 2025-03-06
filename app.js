@@ -1,5 +1,14 @@
 // app.js
-import express from "express"
+import express from "express";
+import mariadb from 'mariadb';
+
+const pool = mariadb.createPool({
+    host:
+    user:
+    password:
+    database:
+    port:
+});
 
 const app = express();
 
