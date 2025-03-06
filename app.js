@@ -1,9 +1,9 @@
 // app.js
 import express from "express";
-// import mariadb from 'mariadb';
+import mariadb from 'mariadb';
 
 // const pool = mariadb.createPool({
-//     host:
+//     host: 
 //     user:
 //     password:
 //     database:
