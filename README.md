@@ -23,6 +23,14 @@ List:
     ^ This is for setup to test
 - npx nodemon
     ^ This is for launching test enviroment to see changes
+- setting up .env file
+    ^``DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=1234
+DB_NAME=music_meta
+DB_PORT=3306
+PORT=3000``
+    The password need to be replace with the one you use to setup the DB_HOST
 
 # Understand POST and GET #
 - home button use the POST that way user data is passed along the URL
