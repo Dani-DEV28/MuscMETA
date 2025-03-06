@@ -1,0 +1,19 @@
+body {
+    background-color: #1e1e1e; /* Dark gray */
+    color: #ffffff; /* White */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.img-button {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.img-button img {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+}
