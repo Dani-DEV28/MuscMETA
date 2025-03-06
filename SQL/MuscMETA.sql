@@ -9,6 +9,8 @@ CREATE TABLE album_artist(
     ItemCount INT DEFAULT 0
 );
 
+ALTER TABLE album_artist ADD COLUMN AlbumArtist VARCHAR(255);
+
 CREATE TABLE album_single(
     ArtistID INT NOT NULL,
     AlbumName VARCHAR(255) NOT NULL,
