@@ -1,4 +1,5 @@
 # MusicMETA #
+[DB LAYOUT](DBLAYOUT.md) for additional information .
 Agenda of thing needed:
 - CSS styling, focus on Mobile look first
     -> Three base color, default-background, wrapper for the main page, and font
