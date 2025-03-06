@@ -1,5 +1,14 @@
 // app.js
 import express from "express";
+import mariadb from 'mariadb';
+
+const pool = mariadb.createPool({
+    host:
+    user:
+    password:
+    database:
+    port:
+});
 
 const app = express();
 
@@ -23,9 +32,30 @@ app.post('/', (req, res) => {
     res.render('home');
 });
 
+
 app.post('/search', async (req, res) => {
     console.log(req.body.userInput);
     res.render('searchResult');
+
+app.post('/', (req, res) => {
+
+    // Send our home page as a response to the client
+    res.render('home');
+});
+
+app.post('/search', async (req, res) => {
+    console.log(req.body.userInput);
+    res.render('searchResult');
+});
+
+app.post('/list', async (req, res) => {
+    res.render('trackList');
+});
+
+//Tell the server to listen on our specified port
+app.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+
 });
 
 app.post('/list', async (req, res) => {
