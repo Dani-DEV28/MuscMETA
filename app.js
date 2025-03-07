@@ -1,6 +1,7 @@
 // app.js
 import express from "express";
 import mariadb from 'mariadb';
+import 'dotenv/config'; 
 
 const pool = mariadb.createPool({
     host: process.env.DB_HOST,
@@ -40,17 +41,35 @@ app.get("/", (req, res) => {
 
 app.post('/', (req, res) => {
 
-    // Send our home page as a response to the client
-    res.render('home');
+  // Send our home page as a response to the client
+  res.render('home');
 });
 
 app.post('/search', async (req, res) => {
-    console.log(req.body.userInput);
-    res.render('searchResult');
+  const userInput = req.body.userInput;
+  let conn;
+
+  try {
+      conn = await connect();
+      const searchInput = await conn.query(
+          "SELECT * FROM album_artist WHERE ArtistName = ?",
+          [userInput]
+      );
+
+      console.log("User Input:", userInput);
+      console.log("Search Result:", searchInput);
+
+      res.render('searchResult', { searchInput });
+  } catch (err) {
+      console.error("Database query error:", err);
+      res.status(500).send("Internal Server Error");
+  } finally {
+      if (conn) conn.release(); // Ensure the connection is released
+  }
 });
 
 app.post('/list', async (req, res) => {
-    res.render('trackList');
+  res.render('trackList');
 });
 
 //Tell the server to listen on our specified port
