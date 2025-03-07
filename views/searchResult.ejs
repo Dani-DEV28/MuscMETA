@@ -13,17 +13,21 @@
     </form>
     <p>Check console log</p>
 
-    <form action="list" method="post" >
-        <div class = albumLayout>
+    <form action="/list" method="post" >
+        <div class="albumLayout">
             <!-- For each loop to load search result -->
             <% retrieveAlbumList.forEach((item, index) => { %>
                 <% item.albumSingles.forEach((album, albumIndex) => { %>
-                    <button type="submit" class="img-button">
-                        <img src="<%= album.AlbumIMG %>" alt="Album Cover">
-                    </button>
+                    <form action="list" method="post" class="album-form">
+                        <!-- Hidden input to hold the AlbumID for this specific album -->
+                        <input type="hidden" name="AlbumID" value="<%= album.AlbumID %>">
+                        <button type="submit" class="img-button">
+                            <img src="<%= album.AlbumIMG %>" alt="Album Cover">
+                        </button>
+                    </form>
                 <% }) %>
             <% }) %>
-        </div>   
+        </div>  
     </form>
 
     <button onclick="history.go(-1)">🔙 Go Back</button>

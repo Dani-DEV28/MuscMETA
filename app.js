@@ -93,6 +93,7 @@ app.post('/search', async (req, res) => {
 });
 
 app.post('/list', async (req, res) => {
+  console.log(req.body.AlbumID);
   res.render('trackList');
 });
 
