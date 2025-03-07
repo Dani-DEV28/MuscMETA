@@ -56,10 +56,21 @@ app.post('/search', async (req, res) => {
           [userInput]
       );
 
+      const specificID = searchInput[0]?.SpecificID;
+
+      const retrieveAlbumList = await conn.query(
+        "SELECT * FROM album_single WHERE ArtistID= ?",
+        [specificID]
+    );
+
       console.log("User Input:", userInput);
       console.log("Search Result:", searchInput);
+      console.log("SpecificID", specificID)
+      console.log("Album List:", retrieveAlbumList);
 
-      res.render('searchResult', { searchInput });
+      console.log("Album List:", retrieveAlbumList[0].AlbumIMG);
+
+      res.render('searchResult', { retrieveAlbumList});
   } catch (err) {
       console.error("Database query error:", err);
       res.status(500).send("Internal Server Error");
