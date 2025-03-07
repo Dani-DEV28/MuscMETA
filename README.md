@@ -5,6 +5,14 @@
 # List of things #
 - Be sure to make a brach, do not edit in main <br>
     - `git branch [name]`
+    - `git checkout [name]` <-to switch to the new branch
+<br>
+- Afterward you will be working on your own branch, that can be broken while main. You can optional merge new features from the main branch - Instruction: <br>
+    - `git branch` <- check if you are on `main` or not
+    - `git checkout [yourBranch]` <- Ensure switching from main to the branch you made
+    - `git fetch` <- Updating all remote branches on local machine
+    - `git merge origin` <- update your local branch to have new changes from `main`
+    - Then just `git add .`, `git commit -m "merge"`, and `git push origin [yourBranch]`
 <br>
 Agenda of thing needed:
 - CSS styling, focus on Mobile look first
