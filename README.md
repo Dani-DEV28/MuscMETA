@@ -21,7 +21,7 @@ Afterward, you will be working on your own branch, which can be broken while `ma
   git commit -m "merge"
   git push origin [yourBranch]
 <br>
-Agenda of thing needed:
+***Agenda of thing needed:***
 - CSS styling, focus on Mobile look first
     - Three base color, default-background, wrapper for the main page, and font
 - SQL database
