@@ -20,8 +20,7 @@ Afterward, you will be working on your own branch, which can be broken while `ma
   git add .
   git commit -m "merge"
   git push origin [yourBranch]
-
-<br><br>
+<br>
 Agenda of thing needed:
 - CSS styling, focus on Mobile look first
     - Three base color, default-background, wrapper for the main page, and font
