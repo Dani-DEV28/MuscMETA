@@ -21,12 +21,6 @@ Afterward, you will be working on your own branch, which can be broken while `ma
   git commit -m "merge"
   git push origin [yourBranch]
 
-### Why This Works:
-1. **List Formatting (`-`)**: Using a list helps structure the information cleanly.
-2. **Consistent Use of Backticks**: Keep the backticks around code snippets without mixing them with HTML tags.
-3. **Code Block (` ```bash `)**: For multiline code, using triple backticks creates a clear block of code with syntax highlighting.
-
-Would you like me to test or modify anything else?
 <br><br>
 Agenda of thing needed:
 - CSS styling, focus on Mobile look first
