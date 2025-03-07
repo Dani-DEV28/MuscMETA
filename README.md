@@ -63,3 +63,4 @@ PORT=3000``
     `<button onclick="history.go(-1)">🔙 Go Back</button>`
 - CSS link:
     `<link rel="stylesheet" href="/styles/style.css">`
+- For Loop nest timecomplexity of O(n*m) -> need to late reduce time comp

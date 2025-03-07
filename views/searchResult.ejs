@@ -15,12 +15,14 @@
 
     <form action="list" method="post" >
         <div class = albumLayout>
-            <button type="submit" class="img-button">
-                <img src="<%= retrieveAlbumList[0].AlbumIMG %>" alt="Album Cover">
-            </button>
-            <button type="submit" class="img-button">
-                <img src="/img/ame.jpg" alt="Album Cover">
-            </button>
+            <!-- For each loop to load search result -->
+            <% retrieveAlbumList.forEach((item, index) => { %>
+                <% item.albumSingles.forEach((album, albumIndex) => { %>
+                    <button type="submit" class="img-button">
+                        <img src="<%= album.AlbumIMG %>" alt="Album Cover">
+                    </button>
+                <% }) %>
+            <% }) %>
         </div>   
     </form>
 

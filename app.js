@@ -52,23 +52,36 @@ app.post('/search', async (req, res) => {
   try {
       conn = await connect();
       const searchInput = await conn.query(
-          "SELECT * FROM album_artist WHERE ArtistName = ?",
-          [userInput]
+          "SELECT * FROM album_artist WHERE ArtistName = ? OR AlbumArtist = ?",
+          [userInput, userInput]
       );
 
-      const specificID = searchInput[0]?.SpecificID;
+      const specificID = searchInput.length;
 
-      const retrieveAlbumList = await conn.query(
-        "SELECT * FROM album_single WHERE ArtistID= ?",
-        [specificID]
-    );
+    // Initialize an empty array for the album list
+    let retrieveAlbumList = [];
+
+    // Loop through the search results
+    for (const artist of searchInput) {
+        // Query to get album singles for each artist
+        const albumSingles = await conn.query(
+            "SELECT * FROM album_single WHERE ArtistID = ?",
+            [artist.SpecificID]
+        );
+
+        // Add the album singles to the retrieveAlbumList array
+        retrieveAlbumList.push({
+            artist,
+            albumSingles
+        });
+    }
 
       console.log("User Input:", userInput);
       console.log("Search Result:", searchInput);
       console.log("SpecificID", specificID)
       console.log("Album List:", retrieveAlbumList);
 
-      console.log("Album List:", retrieveAlbumList[0].AlbumIMG);
+      console.log("Album List:", retrieveAlbumList[0].albumSingles[0].AlbumIMG);
 
       res.render('searchResult', { retrieveAlbumList});
   } catch (err) {
