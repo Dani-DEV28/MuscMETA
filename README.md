@@ -7,17 +7,27 @@
     - `git branch [name]`
     - `git checkout [name]` <-to switch to the new branch
 <br>
-- Afterward you will be working on your own branch, that can be broken while main. You can optional merge new features from the main branch - Instruction: <br>
-    - `git branch` <- check if you are on `main` or not
-    <br>
-    - `git checkout [yourBranch]` <- Ensure switching from main to the branch you made
-    <br>
-    - `git fetch` <- Updating all remote branches on local machine
-    <br>
-    - `git merge origin` <- update your local branch to have new changes from `main`
-    <br>
-    - Then just `git add .`, `git commit -m "merge"`, and `git push origin [yourBranch]`
-<br>
+Afterward, you will be working on your own branch, which can be broken while `main` remains stable. You can optionally merge new features from the `main` branch.
+
+**Instruction:**  
+
+- `git branch` ← Check if you are on `main` or not  
+- `git checkout [yourBranch]` ← Switch from `main` to the branch you made  
+- `git fetch` ← Update all remote branches on your local machine  
+- `git merge origin/main` ← Update your local branch with new changes from `main`  
+- Then just:  
+  ```bash
+  git add .
+  git commit -m "merge"
+  git push origin [yourBranch]
+
+### Why This Works:
+1. **List Formatting (`-`)**: Using a list helps structure the information cleanly.
+2. **Consistent Use of Backticks**: Keep the backticks around code snippets without mixing them with HTML tags.
+3. **Code Block (` ```bash `)**: For multiline code, using triple backticks creates a clear block of code with syntax highlighting.
+
+Would you like me to test or modify anything else?
+<br><br>
 Agenda of thing needed:
 - CSS styling, focus on Mobile look first
     - Three base color, default-background, wrapper for the main page, and font
