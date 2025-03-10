@@ -64,3 +64,11 @@ PORT=3000``
 - CSS link:
     `<link rel="stylesheet" href="/styles/style.css">`
 - For Loop nest timecomplexity of O(n*m) -> need to late reduce time comp
+- Page navi:
+    ```<div id = headerTitle>
+        <form action="/" method="post">
+            <button type="submit" id = navi>🔙 Go Home</button>
+        </form>
+        <H2>Album Track List</H2>
+        <button onclick="history.go(-1)" id = navi>🔙 Go Back</button>
+    </div>```
