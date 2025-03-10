@@ -94,6 +94,7 @@ app.post('/search', async (req, res) => {
 
 app.post('/list', async (req, res) => {
   console.log(req.body.AlbumID);
+  console.log(req.body.AlbumImagePath);
   res.render('trackList');
 });
 

@@ -24,6 +24,7 @@
                     <form action="list" method="post" class="album-form">
                         <!-- Hidden input to hold the AlbumID for this specific album -->
                         <input type="hidden" name="AlbumID" value="<%= album.AlbumID %>">
+                        <input type="hidden" name="AlbumImagePath" value="<%= album.AlbumIMG %>">
                         <button type="submit" class="img-button">
                             <img src="<%= album.AlbumIMG %>" alt="Album Cover">
                         </button>
