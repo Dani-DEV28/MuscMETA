@@ -31,6 +31,8 @@ CREATE TABLE track_info(
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+ALTER TABLE track_info ADD COLUMN track_length TIME;
+
 CREATE TRIGGER update_item_count
 AFTER INSERT ON album_single
 FOR EACH ROW

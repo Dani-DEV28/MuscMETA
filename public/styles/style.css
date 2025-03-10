@@ -117,6 +117,22 @@ input[type="text"] {
   object-fit: cover;
 }
 
+#trackInfo {
+  width: 90%; /* Fit within 90% of the page width */
+  margin: 0 auto; /* Center the div horizontally */
+  text-align: center; /* Center the img horizontally */
+  padding: 1rem; /* Add some padding for spacing */
+}
+
+/* Style for the img inside #trackInfo */
+#trackInfo img {
+  width: 40%; /* Set the image width to 40% of the page */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 0.5rem; /* Optional: Add rounded corners */
+  display: block; /* Ensure the image is treated as a block element */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
 /* Mobile Styles */
 @media (max-width: 480px) {
   body {

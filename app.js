@@ -95,7 +95,9 @@ app.post('/search', async (req, res) => {
 app.post('/list', async (req, res) => {
   console.log(req.body.AlbumID);
   console.log(req.body.AlbumImagePath);
-  res.render('trackList');
+
+  const imgPath = req.body.AlbumImagePath;
+  res.render('trackList' ,{ imgPath });
 });
 
 //Tell the server to listen on our specified port

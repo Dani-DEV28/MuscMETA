@@ -18,3 +18,5 @@ WHERE AlbumName = 'Shinigami';
 
 SELECT * FROM album_single;
 SELECT * FROM album_artist;
+
+SELECT * FROM track_info;
