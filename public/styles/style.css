@@ -1,110 +1,125 @@
-body {
-    background-color: #1e1e1e; /* Dark gray */
-    color: #ffffff; /* White */
+/* Global Styles */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-}
-
-.img-button {
-    border: none;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-}
-
-.img-button img {
-    width: 100px; /* Adjust size as needed */
-    height: auto;
-}
-
-* {
-    box-sizing: border-box;
-  }
-
-  
-  #main {
-    background-color: grey;
-    width: 70%;
-    margin: 0 auto 1rem auto;
-    padding: 0 1rem 2rem 1rem;
   }
   
-  .main-button {
-    border: none;
-    background-color: darkgreen;
-    border-color: darkgreen;
-    padding: .5rem .75rem;
-    border-radius: .25rem;
-    text-decoration: none;
-    color: white;
-    font-size: 1rem;
+  body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+    min-height: 100vh;
+    padding: 1rem;
   }
-  
-  /* Header styles */
+
+  #titleMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    flex: 1; /* Take up remaining space in the body */
+}   
   
   header {
-    background-color: #e9ecef;
-    border-radius: .25rem;
-    padding: 2rem 1rem;
+    text-align: center;
     margin-bottom: 2rem;
   }
   
-  header img {
-    /*width: 100%;*/
-    max-width: 200px;
-    float: right;
+  h1 {
+    font-size: 3rem;
+    color: #ff6600;
   }
   
-  header h1 {
-    font-weight: 600;
-    color: red;
-    font-size: 3.5rem;
-    margin: 0;
-  }
-  
-  #tag-line {
+  p {
     font-size: 1.25rem;
-    font-weight: 300;
+    color: #dddddd;
   }
   
-  /* Form styles */
-  
-  input[type="text"], input[type="email"], textarea, select {
+  /* Search Engine Styles */
+  #searchEngine {
     width: 100%;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    margin: 0rem 0rem 1rem 0rem;
-    padding: .75rem;
+    max-width: 600px;
   }
   
-  /* All placeholder attributes */
-  ::placeholder {
+  form {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  input[type="text"] {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
     font-size: 1rem;
   }
   
-  legend {
-    color:darkgreen;
-    font-variant: small-caps;
-    font-size: 1.5rem;
-    padding-left: 1rem;
+  button {
+    padding: 0.75rem 1rem;
+    border: none;
+    background-color: #ff6600;
+    color: white;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #e65c00;
+  }
+
+#headerTitle {
+    display: flex; /* Use Flexbox for layout */
+    justify-content: space-between; /* Push button and h2 to opposite ends */
+    align-items: center; /* Vertically center the items */
+    width: 100%; /* Full width of the container */
+    padding: 1rem; /* Add some padding for spacing */
+    background-color: #2a2a2a; /* Optional: Add a background color */
+    border-bottom: 1px solid #444; /* Optional: Add a border at the bottom */
+}
+
+#headerTitle button:hover {
+    background-color: #e65c00; /* Darker background color on hover */
+}
+
+  /* Album Layout Styles */
+  .albumLayout {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next row */
+    gap: 1rem; /* Space between items */
+    width: 80%; /* Width of the container */
+    margin-top: 2rem; /* Space above the container */
+    justify-content: center; /* Center items horizontally */
+    margin-left: auto; /* Center the container horizontally */
+    margin-right: auto; /* Center the container horizontally */
+}
+
+.albumLayout > * {
+    flex: 1 1 calc(50% - 0.5rem); /* Two items per row with gap accounted for */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+  
+  .img-button img {
     width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
   }
   
-  fieldset {
-    border: 1px solid darkgreen;
-    padding: 1rem;
-    margin-bottom: 1.25rem;
-  }
-  
-  label {
-    display: block;
-    padding-bottom: .5rem;
-  }
-  
-  /* Mobile styles */
+  /* Mobile Styles */
   @media (max-width: 480px) {
-    #main {
-        width: 90%;
+    body {
+      padding: 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+    p {
+      font-size: 1rem;
     }
   }
+  

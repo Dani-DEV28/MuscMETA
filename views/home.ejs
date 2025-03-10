@@ -7,15 +7,18 @@
 
     <link rel="stylesheet" href="/styles/style.css">
 </head>
-<body>
-    <div id = main>
+<body id = titleMain>
+    <div>
         <header>
             <h1>MusicMETA</h1>
             <p>Simplist page for Music Info</p>
         </header>
+    </div>
+
+    <div id = searchEngine>
         <form action="search" method="post">
             <input type="text" name="userInput" placeholder="Search Artist..." required id="userInput">
-            <span class="err" id="err-name">Artist not found</span>
+            <!-- <span class="err" id="err-name">Artist not found</span> -->
             <button type="submit">🔍</button>
         </form>
     </div>

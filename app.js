@@ -83,7 +83,7 @@ app.post('/search', async (req, res) => {
 
       console.log("Album List:", retrieveAlbumList[0].albumSingles[0].AlbumIMG);
 
-      res.render('searchResult', { retrieveAlbumList});
+      res.render('searchResult', { retrieveAlbumList, userInput });
   } catch (err) {
       console.error("Database query error:", err);
       res.status(500).send("Internal Server Error");

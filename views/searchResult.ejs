@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Album Listt</title>
+    <title>Album List</title>
 
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
-    <form action="/" method="post">
-        <button type="submit">🔙 Go Home</button>
-    </form>
-    <p>Check console log</p>
+    <div id = headerTitle>
+        <form action="/" method="post">
+            <button type="submit">🔙 Go Home</button>
+        </form>
+        <h2>Search Results for: <span><%= userInput %></span></h2>
+    </div>
+    <!-- <p>Check console log</p> -->
 
     <form action="/list" method="post" >
         <div class="albumLayout">
@@ -29,8 +32,8 @@
             <% }) %>
         </div>  
     </form>
-
-    <button onclick="history.go(-1)">🔙 Go Back</button>
+<!-- 
+    <button onclick="history.go(-1)">🔙 Go Back</button> -->
 
 
 </body>
