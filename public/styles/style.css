@@ -1,125 +1,132 @@
 /* Global Styles */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  body {
-    background-color: #1e1e1e;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    /* align-items: center;
-    justify-content: center; */
-    min-height: 100vh;
-    padding: 1rem;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
 
-  #titleMain {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
-    flex: 1; /* Take up remaining space in the body */
-}   
-  
-  header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  h1 {
-    font-size: 3rem;
-    color: #ff6600;
-  }
-  
-  p {
-    font-size: 1.25rem;
-    color: #dddddd;
-  }
-  
-  /* Search Engine Styles */
-  #searchEngine {
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  form {
-    display: flex;
-    gap: 0.5rem;
-  }
-  
-  input[type="text"] {
-    flex: 1;
-    padding: 0.75rem;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    font-size: 1rem;
-  }
-  
-  #navi{
-    padding: 0.75rem 1rem;
-    border: none;
-    background-color: #ff6600;
-    color: white;
-    font-size: 1rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-  }
-  
-  #navi:hover {
-    background-color: #e65c00;
-  }
+body {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+#titleMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  flex: 1; /* Take up remaining space in the body */
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #ff6600;
+}
+
+p {
+  font-size: 1.25rem;
+  color: #dddddd;
+}
+
+/* Search Engine Styles */
+#searchEngine {
+  width: 100%;
+  max-width: 600px;
+  position: relative; /* Ensure the error message is positioned relative to the form */
+}
+
+#searchEngine .err {
+  display: block; /* Ensure the error message is displayed as a block element */
+  color: #ff0000; /* Red color for the error text */
+  font-size: 0.875rem; /* Smaller font size for the error message */
+  margin-top: 0.5rem; /* Add some space between the input and the error message */
+  text-align: center; /* Align the error message to the left */
+}
+
+form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+#navi {
+  padding: 0.75rem 1rem;
+  border: none;
+  background-color: #ff6600;
+  color: white;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+#navi:hover {
+  background-color: #e65c00;
+}
 
 #headerTitle {
-    display: flex; /* Use Flexbox for layout */
-    justify-content: space-between; /* Push button and h2 to opposite ends */
-    align-items: center; /* Vertically center the items */
-    width: 100%; /* Full width of the container */
-    padding: 1rem; /* Add some padding for spacing */
-    background-color: #2a2a2a; /* Optional: Add a background color */
-    border-bottom: 1px solid #444; /* Optional: Add a border at the bottom */
+  display: flex; /* Use Flexbox for layout */
+  justify-content: space-between; /* Push button and h2 to opposite ends */
+  align-items: center; /* Vertically center the items */
+  width: 100%; /* Full width of the container */
+  padding: 1rem; /* Add some padding for spacing */
+  background-color: #2a2a2a; /* Optional: Add a background color */
+  border-bottom: 1px solid #444; /* Optional: Add a border at the bottom */
 }
 
 #headerTitle button:hover {
-    background-color: #e65c00; /* Darker background color on hover */
+  background-color: #e65c00; /* Darker background color on hover */
 }
 
-  /* Album Layout Styles */
-  .albumLayout {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next row */
-    gap: 1rem; /* Space between items */
-    width: 80%; /* Width of the container */
-    margin-top: 2rem; /* Space above the container */
-    justify-content: center; /* Center items horizontally */
-    margin-left: auto; /* Center the container horizontally */
-    margin-right: auto; /* Center the container horizontally */
+/* Album Layout Styles */
+.albumLayout {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next row */
+  gap: 1rem; /* Space between items */
+  width: 80%; /* Width of the container */
+  margin-top: 2rem; /* Space above the container */
+  justify-content: center; /* Center items horizontally */
+  margin-left: auto; /* Center the container horizontally */
+  margin-right: auto; /* Center the container horizontally */
 }
 
 .albumLayout > * {
-    flex: 1 1 calc(50% - 0.5rem); /* Two items per row with gap accounted for */
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
+  flex: 1 1 calc(50% - 0.5rem); /* Two items per row with gap accounted for */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
-  
-  .img-button img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-  }
-  
-  /* Mobile Styles */
-  @media (max-width: 480px) {
-    body {
+
+.img-button img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* Mobile Styles */
+@media (max-width: 480px) {
+  body {
       padding: 1rem;
-    }
-    h1 {
-      font-size: 2.5rem;
-    }
-    p {
-      font-size: 1rem;
-    }
   }
+  h1 {
+      font-size: 2.5rem;
+  }
+  p {
+      font-size: 1rem;
+  }
+}
   

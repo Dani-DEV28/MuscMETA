@@ -86,7 +86,7 @@ app.post('/search', async (req, res) => {
       res.render('searchResult', { retrieveAlbumList, userInput });
   } catch (err) {
       console.error("Database query error:", err);
-      res.status(500).send("Internal Server Error");
+      res.render('home', { error: "Artist not found" });
   } finally {
       if (conn) conn.release(); // Ensure the connection is released
   }

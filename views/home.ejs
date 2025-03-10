@@ -18,9 +18,12 @@
     <div id = searchEngine>
         <form action="search" method="post">
             <input type="text" name="userInput" placeholder="Search Artist..." required id="userInput">
-            <!-- <span class="err" id="err-name">Artist not found</span> -->
             <button type="submit" id = navi>🔍</button>
+            
         </form>
+        <% if (typeof error !== 'undefined' && error) { %>
+            <span class="err" id="err-name"><%= error %></span>
+        <% } %>
     </div>
 </body>
 </html>
