@@ -10,6 +10,8 @@ INSERT IGNORE INTO album_artist (ArtistName, AlbumArtist) VALUES('FuwaMoco', 'Ho
 
 INSERT IGNORE INTO album_artist (ArtistName, AlbumArtist) VALUES('Hakos Baelz', 'Hololive');
 
+INSERT IGNORE INTO album_artist (ArtistName, AlbumArtist) VALUES('Gigi Murin', 'Hololive');
+
 -- Step 3: Insert data into album_single (use subqueries to fetch ArtistID)
 INSERT INTO album_single (ArtistID, AlbumName, AlbumIMG, TrackCount)
 VALUES (
@@ -33,6 +35,25 @@ VALUES (
     'Ameotome',
     '/img/ame.jpg',
     1
+);
+
+INSERT INTO album_single (ArtistID, AlbumName, AlbumIMG, TrackCount)
+VALUES (
+    (SELECT SpecificID FROM album_artist WHERE ArtistName = 'Gigi Murin' AND AlbumArtist = 'Hololive'),
+    'Hai Yorokonde',
+    '/img/gigi.png',
+    1
+);
+
+INSERT INTO track_info (AlbumID, TrackNum, TrackName, TrackInfo, track_length)
+VALUES (
+    (SELECT AlbumID FROM album_single WHERE AlbumName = 'Hai Yorokonde' AND ArtistID = (
+        SELECT SpecificID FROM album_artist WHERE ArtistName = 'Gigi Murin' AND AlbumArtist = 'Hololive'
+    )),
+    1, -- TrackNum
+    'Hai Yorokonde', -- TrackName
+    'Mix Engineer for Cover: markkoo\nVocal: Gigi Murin\n\nOriginal by Kocchi no Kento\n\nLyrics by Kocchi no Kento\nComposed by Kocchi no Kento & GRP\nMixing Engineer：Hideki Ataka\nRecording Engineer：Midori Furusawa', -- TrackInfo
+    '00:02:42' -- TrackLength (in TIME format)
 );
 
 -- Step 4: Update AlbumIMG for a specific album (filter by ArtistID and AlbumName)

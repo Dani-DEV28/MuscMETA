@@ -104,6 +104,9 @@ app.post('/search', async (req, res) => {
 app.post('/list', async (req, res) => {
     const albumID = req.body.AlbumID;
     const imgPath = req.body.AlbumImagePath;
+
+    const trackNum = req.body.TrackNum || 1;
+
     let conn;
   
     // Validate inputs
@@ -129,9 +132,27 @@ app.post('/list', async (req, res) => {
       const albumName = albumRetrieve[0].AlbumName;
   
       console.log("Album Name:", albumName);
+      console.log("Album ID:", albumID);
+
+      const trackRetrieve = await conn.query(
+        "SELECT TrackName, TrackInfo FROM track_info WHERE AlbumID = ? AND TrackNum = ?",
+        [albumID, trackNum]
+      );
+
+      let trackName = null;
+      let trackInfo = null;
+
+      if (trackRetrieve.length > 0) {
+        trackName = trackRetrieve[0].TrackName;
+        trackInfo = trackRetrieve[0].TrackInfo;
+      }
+
+      // console.log(trackRetrieve.length);
+      // console.log(trackName);
+      // console.log(trackInfo);
   
       // Render the trackList view with the image path and album name
-      res.render('trackInfoList', { imgPath, albumName });
+      res.render('trackInfoList', { imgPath, albumName, trackName, trackInfo });
     } catch (err) {
       console.error("Error rendering track list:", err);
       res.render('home', { error: "An error occurred while loading the track list" });

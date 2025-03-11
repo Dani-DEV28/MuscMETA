@@ -79,3 +79,4 @@ BEGIN
 END;
 
 DROP TRIGGER IF EXISTS update_item_count;
+DROP TRIGGER IF EXISTS update_track_count;

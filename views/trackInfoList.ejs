@@ -17,7 +17,12 @@
     </div>
     <div id="trackInfo">
         <img src="<%= imgPath %>" id="trackImg" alt="album cover">
-        
+        <% if (trackName) { %>
+            <h2>Track: <%= trackName %></h2>
+            <pre><%= trackInfo %></pre>
+        <% } else { %>
+            <p>No track information available.</p>
+        <% } %>
     </div>
 </body>
 </html>
