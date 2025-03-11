@@ -17,6 +17,11 @@
 
 ---
 
+## What is MusicMETA?
+- It intend to be an alternative interface for music database (DB) such as MusicBrainz
+### How are we different?
+- First all, unlike more well know DB. We are focus on giving user a cleaner and less clutter experience compare to more dated database websites.
+
 ## Branching Guidelines
 - **Do not edit directly in `main`.** Always create a new branch.
 
@@ -136,7 +141,7 @@ Replace the `DB_PASSWORD` with the password used to set up the database.
 
 ## TROUBLE SHOOTING TIPS
 
-- **Issues with loading `npx nodemon` for Windows users
+- Issues with loading `npx nodemon` for Windows users
 ### error example in VS terminal
 ```html
 Emitted 'error' event on Server instance at:
