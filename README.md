@@ -13,7 +13,7 @@
 - [Environment Setup](#environment-setup)
 - [POST and GET Methods](#understand-post-and-get)
 - [Current Implementation](#current-implementation)
-- [TROUBLE SHOOTING TIPS](#TROUBLE SHOOTING TIPS)
+- [TROUBLE SHOOTING TIPS](#TROUBLE-SHOOTING-TIPS)
 
 ---
 
