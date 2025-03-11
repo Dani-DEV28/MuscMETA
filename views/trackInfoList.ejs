@@ -12,9 +12,12 @@
         <form action="/" method="post">
             <button type="submit" id = navi>🔙 Go Home</button>
         </form>
-        <H2>Album Track List</H2>
+        <H2><%= albumName %></H2>
         <button onclick="history.go(-1)" id = navi>🔙 Go Back</button>
     </div>
-    <p>Check console log for TrackInfo</p>
+    <div id="trackInfo">
+        <img src="<%= imgPath %>" id="trackImg" alt="album cover">
+        
+    </div>
 </body>
 </html>

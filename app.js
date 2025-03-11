@@ -49,56 +49,96 @@ app.post('/search', async (req, res) => {
   const userInput = req.body.userInput;
   let conn;
 
+  // Validate user input
+  if (!userInput || typeof userInput !== 'string') {
+      return res.render('home', { error: "Invalid input" });
+  }
+
   try {
-      conn = await connect();
+      conn = await connect(); // Establish database connection
+
+      // Search for artists or album artists
       const searchInput = await conn.query(
           "SELECT * FROM album_artist WHERE ArtistName = ? OR AlbumArtist = ?",
           [userInput, userInput]
       );
 
-      const specificID = searchInput.length;
+      // If no results are found, render the home page with an error message
+      if (searchInput.length === 0) {
+          return res.render('home', { error: "Artist not found" });
+      }
 
-    // Initialize an empty array for the album list
-    let retrieveAlbumList = [];
+      // Initialize an empty array for the album list
+      let retrieveAlbumList = [];
 
-    // Loop through the search results
-    for (const artist of searchInput) {
-        // Query to get album singles for each artist
-        const albumSingles = await conn.query(
-            "SELECT * FROM album_single WHERE ArtistID = ?",
-            [artist.SpecificID]
-        );
+      // Loop through the search results
+      for (const artist of searchInput) {
+          // Query to get album singles for each artist
+          const albumSingles = await conn.query(
+              "SELECT * FROM album_single WHERE ArtistID = ?",
+              [artist.SpecificID]
+          );
 
-        // Add the album singles to the retrieveAlbumList array
-        retrieveAlbumList.push({
-            artist,
-            albumSingles
-        });
-    }
+          // Add the album singles to the retrieveAlbumList array
+          retrieveAlbumList.push({
+              artist,
+              albumSingles
+          });
+      }
 
+      // Log results for debugging
       console.log("User Input:", userInput);
       console.log("Search Result:", searchInput);
-      console.log("SpecificID", specificID)
       console.log("Album List:", retrieveAlbumList);
 
-      console.log("Album List:", retrieveAlbumList[0].albumSingles[0].AlbumIMG);
-
+      // Render the searchResult view with the retrieved data
       res.render('searchResult', { retrieveAlbumList, userInput });
   } catch (err) {
       console.error("Database query error:", err);
-      res.render('home', { error: "Artist not found" });
+      res.render('home', { error: "An error occurred while searching" });
   } finally {
       if (conn) conn.release(); // Ensure the connection is released
   }
 });
 
 app.post('/list', async (req, res) => {
-  console.log(req.body.AlbumID);
-  console.log(req.body.AlbumImagePath);
-
-  const imgPath = req.body.AlbumImagePath;
-  res.render('trackList' ,{ imgPath });
-});
+    const albumID = req.body.AlbumID;
+    const imgPath = req.body.AlbumImagePath;
+    let conn;
+  
+    // Validate inputs
+    if (!albumID || !imgPath) {
+        return res.render('home', { error: "Invalid album data" });
+    }
+  
+    try {
+      conn = await connect();
+  
+      // Retrieve the AlbumName for the given AlbumID
+      const albumRetrieve = await conn.query(
+          "SELECT AlbumName FROM album_single WHERE AlbumID = ?",
+          [albumID]
+      );
+  
+      // Check if the album was found
+      if (albumRetrieve.length === 0) {
+          return res.render('home', { error: "Album not found" });
+      }
+  
+      // Extract the AlbumName from the first row
+      const albumName = albumRetrieve[0].AlbumName;
+  
+      console.log("Album Name:", albumName);
+  
+      // Render the trackList view with the image path and album name
+      res.render('trackInfoList', { imgPath, albumName });
+    } catch (err) {
+      console.error("Error rendering track list:", err);
+      res.render('home', { error: "An error occurred while loading the track list" });
+    } finally {
+      if (conn) conn.release(); // Release the connection
+    }
+  });
 
 //Tell the server to listen on our specified port
 app.listen(PORT, () => {
