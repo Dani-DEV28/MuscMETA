@@ -166,4 +166,8 @@ taskkill /PID [Number after LISTENING] /F
 ```
 - Now you should be able to run `npx nodemon`
 
+- Multiple instance of `npx nodemon` running, causing issues
+    - Enter Window PowerShell and run the `taskkill /IM node.exe /F` to end all instances of node.exe
+
+
 
