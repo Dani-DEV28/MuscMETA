@@ -3,31 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Album Listt</title>
-
+    <title>MusicMETA</title>
+    <link rel="icon" type="image/jpg" href="img/CD-image.jpg">
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
-    <form action="/" method="post">
-        <button type="submit">🔙 Go Home</button>
+    <div id = headerTitle>
+        <form action="/" method="post">
+            <button type="submit" id = navi>🔙 Go Home</button>
+        </form>
+        <h2>Results for: <span><%= userInput %></span></h2>
+    </div>
+    <!-- <p>Check console log</p> -->
+    <form action="/list" method="post" >
+        <div class="albumLayout">
+            <!-- For each loop to load search result -->
+            <% retrieveAlbumList.forEach((item, index) => { %>
+                <% item.albumSingles.forEach((album, albumIndex) => { %>
+                    <form action="list" method="post" class="album-form">
+                        <!-- Hidden input to hold the AlbumID for this specific album -->
+                        <input type="hidden" name="AlbumID" value="<%= album.AlbumID %>">
+                        <input type="hidden" name="AlbumImagePath" value="<%= album.AlbumIMG %>">
+                        <button type="submit" class="img-button">
+                            <img src="<%= album.AlbumIMG %>" alt="Album Cover">
+                        </button>
+                    </form>
+                <% }) %>
+            <% }) %>
+        </div> 
     </form>
-    <p>Check console log</p>
-
-    <form action="list" method="post" >
-        <div class = albumLayout>
-            <button type="submit" class="img-button">
-                <img src="/img/ame.jpg" alt="Album Cover">
-            </button>
-            <button type="submit" class="img-button">
-                <img src="/img/ame.jpg" alt="Album Cover">
-            </button>
-            <button type="submit" class="img-button">
-                <img src="/img/ame.jpg" alt="Album Cover">
-            </button>
-        </div>   
-    </form>
-
-    <button onclick="history.go(-1)">🔙 Go Back</button>
+<!-- 
+    <button onclick="history.go(-1)">🔙 Go Back</button> -->
 
 
 </body>
