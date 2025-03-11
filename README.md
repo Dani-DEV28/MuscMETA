@@ -134,6 +134,9 @@ Replace the `DB_PASSWORD` with the password used to set up the database.
 ```
 
 ## TROUBLE SHOOTING TIPS
+
+- **Issues with loading `npx nodemon` for Windows users
+### error example in VS terminal
 ```html
 Emitted 'error' event on Server instance at:
     at emitErrorNT (node:net:1948:8)
@@ -145,4 +148,15 @@ Emitted 'error' event on Server instance at:
   port: 3000
 }
 ```
+- To resolve the issues on Windows PowerShell and excute the following code:
+```html
+netstat -ano | findstr :3000
+<!-- This should result  in table -->
+TCP    0.0.0.0:3000           0.0.0.0:0              LISTENING       20168
+TCP    [::]:3000              [::]:0                 LISTENING       20168
+<!-- In this table, look for the number after listing and excute the following -->
+taskkill /PID [Number after LISTENING] /F 
+```
+- Now you should be able to run `npx nodemon`
+
 
