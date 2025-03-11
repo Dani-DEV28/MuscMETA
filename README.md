@@ -133,3 +133,16 @@ Replace the `DB_PASSWORD` with the password used to set up the database.
 </div>
 ```
 
+## TROUBLE SHOOTING TIPS
+```html
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1948:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+```
+
