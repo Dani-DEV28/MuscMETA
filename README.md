@@ -5,6 +5,7 @@
 ---
 
 ## Table of Contents
+- [What is MusicMETA?](#What-is-MusicMETA?)
 - [Branching Guidelines](#branching-guidelines)
 - [Agenda of Things Needed](#agenda-of-things-needed)
 - [User Interface](#user-interface)
