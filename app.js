@@ -179,6 +179,36 @@ app.post('/admin', async (req, res) => {
   const UITrackName = req.body.UITrackName || UIAlbumName
   const UIAlbumIMG = req.body.UIAlbumIMG || "/img/testIMG.png";
 
+  const inputArtist = await conn.query(
+    "INSERT IGNORE INTO album_artist (ArtistName, AlbumArtist) VALUES(?, ?);",
+    [UIArtistName, UIAlbumArtist]
+  );
+
+  const artistResult = await conn.query(
+    "SELECT SpecificID FROM album_artist WHERE ArtistName = ? AND AlbumArtist = ?;",
+    [UIArtistName, UIAlbumArtist]
+  );
+
+  const specifiedID = artistResult[0].SpecificID;
+
+  const inputAlbum = await conn.query(
+    "INSERT INTO album_single (ArtistID, AlbumName, AlbumIMG, TrackCount) VALUES (?, ?, ?, ?)",
+    [specifiedID, UIAlbumName, UIAlbumIMG, UITrackNum]
+  );
+
+  const albumResult = await conn.query(
+    "SELECT AlbumID FROM album_single WHERE AlbumName = ? AND ArtistID = ?;",
+    [UIAlbumName, specifiedID]
+  );
+
+  const albumID = albumResult[0].AlbumID;
+
+  const inputTrackInfo = await conn.query(
+    "INSERT INTO track_info (AlbumID, TrackNum, TrackName, TrackInfo, track_length) VALUES (?, ?, ?, ?, ?)"
+    [albumID, UITrackNum, UITrackName, UITrackInfo, UITrackLength]
+  );
+
+
   // Log the values to the console
   console.log('Artist Name:', UIArtistName);
   console.log('Album Artist:', UIAlbumArtist);
