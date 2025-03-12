@@ -159,7 +159,15 @@ app.post('/list', async (req, res) => {
     } finally {
       if (conn) conn.release(); // Release the connection
     }
-  });
+});
+
+app.get('/admin', async (req, res) => {
+  res.render('admin');
+});
+
+app.post('/admin', async (req, res) => {
+  res.render('admin');
+});
 
 //Tell the server to listen on our specified port
 app.listen(PORT, () => {
