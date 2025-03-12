@@ -1,6 +1,7 @@
 # MusicMETA
 
 [DB LAYOUT](docs/DBLAYOUT.md) for additional information.
+[NEEDEDTASKSLP](docs/NEEDEDTASKSLP.md) for tasked need to add to this
 
 ---
 
