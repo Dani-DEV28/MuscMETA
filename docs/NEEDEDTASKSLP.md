@@ -19,5 +19,5 @@ Once the track count is retrieved, dynamically generate a list of tracks on the 
 - **Track Name (`TrackName`)**
 - **Track Length (`track_length`)**
 
-For additional details on database structure and queries, refer to the [DB LAYOUT](docs/DBLAYOUT.md).
+For additional details on database structure and queries, refer to the [DB LAYOUT](DBLAYOUT.md).
 
