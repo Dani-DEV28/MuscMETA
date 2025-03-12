@@ -81,7 +81,7 @@ git push origin [yourBranch]
 ---
 
 ## For More Details
-- [INFO](https://docs.google.com/document/d/14A2q0xTq0EOgOX8tkzLCuTij3G9QEfDbVDOA2ZaI9_Y/edit?usp=sharing)
+- [INFO](docs/INFO.md)
 
 ---
 
