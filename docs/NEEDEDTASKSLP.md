@@ -8,4 +8,4 @@ In the current iteration of the MuscMETA, there was not been an implementation f
 
 The ideal image look should have this 
 
-<img src = "img/WireFrame-TrackList.png">
+<img src="img/WireFrame-TrackList.png" style="display: block; margin: 0 auto;">
