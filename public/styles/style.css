@@ -57,7 +57,7 @@ form {
   gap: 0.5rem;
 }
 
-input[type="text"] {
+input[type="text"], textarea {
   flex: 1;
   padding: 0.75rem;
   border: 1px solid #ced4da;
@@ -93,17 +93,18 @@ input[type="text"] {
   background-color: #e65c00;
 }
 
-#submitionEngine {
+.submitionEngine {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   
   gap: 0.5rem;
 }
 
-#submitionEngine form {
+.submitionEngine form {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
+  width: 100%;
   flex-wrap: wrap;
 }
 

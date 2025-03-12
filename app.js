@@ -166,6 +166,30 @@ app.get('/admin', async (req, res) => {
 });
 
 app.post('/admin', async (req, res) => {
+  // Extract values from the request body
+  const {
+    UIArtistName,
+    UIAlbumName,
+    UITrackLength,
+    UITrackInfo
+  } = req.body;
+
+  const UIAlbumArtist = req.body.UIAlbumArtist || UIArtistName;
+  const UITrackNum = req.body.UITrackNum || 1;
+  const UITrackName = req.body.UITrackName || UIAlbumName
+  const UIAlbumIMG = req.body.UIAlbumIMG || "/img/testIMG.png";
+
+  // Log the values to the console
+  console.log('Artist Name:', UIArtistName);
+  console.log('Album Artist:', UIAlbumArtist);
+  console.log('Album Name:', UIAlbumName);
+  console.log('Album Image URL:', UIAlbumIMG);
+  console.log('Track Number:', UITrackNum);
+  console.log('Track Name:', UITrackName);
+  console.log('Track Length:', UITrackLength);
+  console.log('Track Info:', UITrackInfo);
+
+  // Render the admin page (or redirect as needed)
   res.render('admin');
 });
 

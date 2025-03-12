@@ -12,18 +12,19 @@
         <form action="/" method="post">
             <button type="submit" id = navi>🔙 Go Home</button>
         </form>
-        <H2>THIS is the ADMIN PAGE</H2>
+        <H2>ADMIN PAGE</H2>
     </div>
 
     <div id = submitionEngine>
-        <form action="admin" method="post">
-            <input type="text" name="UIArtistName" placeholder="Input Artist Name..." required id="userInput">
-            <input type="text" name="UIAlbumArtist" placeholder="Input Album Artist..." required id="userInput">
-            <input type="text" name="UIAlbumName" placeholder="Input Album Name..." required id="userInput">
-            <input type="text" name="UIAlbumIMG" placeholder="URL image path..." required id="userInput">
-            <input type="text" name="UITrackNum" placeholder="Track Number..." required id="userInput">
-            <input type="text" name="UITrackName" placeholder="Track Name..." required id="userInput">
-            <input type="text" name="userInput" placeholder="Track Length..." required id="userInput">
+        <form action="admin" method="post" class="submitionEngine">
+            <input type="text" name="UIArtistName" placeholder="Input Artist Name..." required id="UIArtistName">
+            <input type="text" name="UIAlbumArtist" placeholder="Input Album Artist..." id="UIAlbumArtist">
+            <input type="text" name="UIAlbumName" placeholder="Input Album Name..." required id="UIAlbumName">
+            <input type="text" name="UIAlbumIMG" placeholder="URL image path..." id="UIAlbumIMG">
+            <input type="text" name="UITrackNum" placeholder="Track Number..." id="UITrackNum">
+            <input type="text" name="UITrackName" placeholder="Track Name..."  id="UITrackName">
+            <input type="text" name="UITrackLength" placeholder="Track Length..."  id="UITrackLength">
+            <textarea name="UITrackInfo" placeholder="Enter track info..." id="UITrackInfo"></textarea>
 
 
             <button type="submit" id = navi>SUBMIT</button>  
