@@ -1,19 +1,23 @@
-# Low Priority Task for MuscMETA
+# Low Priority Task for MusicMETA
 
-## Table of Contents
+## Implementing `trackList.ejs`
 
-## Implementing the `trackList.ejs`
+Currently, MusicMETA does not support displaying albums that contain multiple tracks.
 
-In the current iteration of the MuscMETA, there was not been an implementation for Album that have more than one track.
+### Expected Webpage Layout
 
-The ideal webpage look should have this layout:
+The `trackList.ejs` page should follow this design:
 
 <img src="img/WireFrame-TrackList.png">
 
-### What need to implemented?
+### What Needs to Be Implemented?
 
-What need to be implemented is database connection to the `app.js` to retrieve the AlbumName, and track count based on a AlbumID.
+To complete this feature, establish a database connection in `app.js` to retrieve album details based on `AlbumID`. Specifically, fetch the `AlbumName` and the total track count.
 
-After retrieving the trackcount, generate on the webpage a list of track for the `tracklist.ejs` page. You will need to populate the item in the track list with the correct `trackNum`, `TrackName`, and `track_length` from the database.
+Once the track count is retrieved, dynamically generate a list of tracks on the `trackList.ejs` page. Each track entry should display:
+- **Track Number (`trackNum`)**
+- **Track Name (`TrackName`)**
+- **Track Length (`track_length`)**
 
-- Do refer to the [DB LAYOUT](docs/DBLAYOUT.md) for additional information about the Data Base Layout.
+For additional details on database structure and queries, refer to the [DB LAYOUT](docs/DBLAYOUT.md).
+
