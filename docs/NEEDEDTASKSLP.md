@@ -14,4 +14,6 @@ The ideal webpage look should have this layout:
 
 What need to be implemented is database connection to the `app.js` to retrieve the AlbumName, and track count based on a AlbumID.
 
-After retrieving the trackcount, generate on the webpage a list of track for the `tracklist.ejs` page. You will need to populate the item in the track list with the correct `trackNum`, `TrackName`, and `track_length`
+After retrieving the trackcount, generate on the webpage a list of track for the `tracklist.ejs` page. You will need to populate the item in the track list with the correct `trackNum`, `TrackName`, and `track_length` from the database.
+
+- Do refer to the [DB LAYOUT](docs/DBLAYOUT.md) for additional information about the Data Base Layout.
