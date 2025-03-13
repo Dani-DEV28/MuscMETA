@@ -179,48 +179,60 @@ app.post('/admin', async (req, res) => {
   const UITrackName = req.body.UITrackName || UIAlbumName
   const UIAlbumIMG = req.body.UIAlbumIMG || "/img/testIMG.png";
 
-  const inputArtist = await conn.query(
-    "INSERT IGNORE INTO album_artist (ArtistName, AlbumArtist) VALUES(?, ?);",
-    [UIArtistName, UIAlbumArtist]
-  );
+  let conn;
 
-  const artistResult = await conn.query(
-    "SELECT SpecificID FROM album_artist WHERE ArtistName = ? AND AlbumArtist = ?;",
-    [UIArtistName, UIAlbumArtist]
-  );
+  try {
+    conn = await connect();
 
-  const specifiedID = artistResult[0].SpecificID;
+    const inputArtist = await conn.query(
+      "INSERT IGNORE INTO album_artist (ArtistName, AlbumArtist) VALUES(?, ?);",
+      [UIArtistName, UIAlbumArtist]
+    );
+  
+    const artistResult = await conn.query(
+      "SELECT SpecificID FROM album_artist WHERE ArtistName = ? AND AlbumArtist = ?;",
+      [UIArtistName, UIAlbumArtist]
+    );
+  
+    const specifiedID = artistResult[0].SpecificID;
+  
+    const inputAlbum = await conn.query(
+      "INSERT INTO album_single (ArtistID, AlbumName, AlbumIMG, TrackCount) VALUES (?, ?, ?, ?)",
+      [specifiedID, UIAlbumName, UIAlbumIMG, UITrackNum]
+    );
+  
+    const albumResult = await conn.query(
+      "SELECT AlbumID FROM album_single WHERE AlbumName = ? AND ArtistID = ?;",
+      [UIAlbumName, specifiedID]
+    );
+  
+    const albumID = albumResult[0].AlbumID;
+  
+    const inputTrackInfo = await conn.query(
+      "INSERT INTO track_info (AlbumID, TrackNum, TrackName, TrackInfo, track_length) VALUES (?, ?, ?, ?, ?);",
+      [albumID, UITrackNum, UITrackName, UITrackInfo, UITrackLength]
+    );
 
-  const inputAlbum = await conn.query(
-    "INSERT INTO album_single (ArtistID, AlbumName, AlbumIMG, TrackCount) VALUES (?, ?, ?, ?)",
-    [specifiedID, UIAlbumName, UIAlbumIMG, UITrackNum]
-  );
+    // Log the values to the console
+    console.log('Artist Name:', UIArtistName);
+    console.log('Album Artist:', UIAlbumArtist);
+    console.log('Album Name:', UIAlbumName);
+    console.log('Album Image URL:', UIAlbumIMG);
+    console.log('Track Number:', UITrackNum);
+    console.log('Track Name:', UITrackName);
+    console.log('Track Length:', UITrackLength);
+    console.log('Track Info:', UITrackInfo);
+  
+    // Render the admin page (or redirect as needed)
+    res.render('admin');
+  } catch (err) {
+    console.error("Error rendering track list:", err);
+    res.render('admin', { error: "An error occurred while loading the track list" });
+  } finally {
+    if (conn) conn.release(); // Release the connection
+  }
 
-  const albumResult = await conn.query(
-    "SELECT AlbumID FROM album_single WHERE AlbumName = ? AND ArtistID = ?;",
-    [UIAlbumName, specifiedID]
-  );
-
-  const albumID = albumResult[0].AlbumID;
-
-  const inputTrackInfo = await conn.query(
-    "INSERT INTO track_info (AlbumID, TrackNum, TrackName, TrackInfo, track_length) VALUES (?, ?, ?, ?, ?)"
-    [albumID, UITrackNum, UITrackName, UITrackInfo, UITrackLength]
-  );
-
-
-  // Log the values to the console
-  console.log('Artist Name:', UIArtistName);
-  console.log('Album Artist:', UIAlbumArtist);
-  console.log('Album Name:', UIAlbumName);
-  console.log('Album Image URL:', UIAlbumIMG);
-  console.log('Track Number:', UITrackNum);
-  console.log('Track Name:', UITrackName);
-  console.log('Track Length:', UITrackLength);
-  console.log('Track Info:', UITrackInfo);
-
-  // Render the admin page (or redirect as needed)
-  res.render('admin');
+  
 });
 
 //Tell the server to listen on our specified port
