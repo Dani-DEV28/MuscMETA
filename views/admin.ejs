@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicMETA</title>
+    <link rel="icon" type="image/jpg" href="img/CD-image.jpg">
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <div id = headerTitle>
+        <form action="/" method="post">
+            <button type="submit" id = navi>🔙 Go Home</button>
+        </form>
+        <H2>ADMIN PAGE</H2>
+    </div>
+
+    <div id = submitionEngine>
+        <form action="admin" method="post" class="submitionEngine">
+            <input type="text" name="UIArtistName" placeholder="Input Artist Name..." required id="UIArtistName">
+            <input type="text" name="UIAlbumArtist" placeholder="Input Album Artist..." id="UIAlbumArtist">
+            <input type="text" name="UIAlbumName" placeholder="Input Album Name..." required id="UIAlbumName">
+            <input type="text" name="UIAlbumIMG" placeholder="URL image path..." id="UIAlbumIMG">
+            <input type="text" name="UITrackNum" placeholder="Track Number..." id="UITrackNum">
+            <input type="text" name="UITrackName" placeholder="Track Name..."  id="UITrackName">
+            <input type="text" name="UITrackLength" placeholder="Track Length..."  id="UITrackLength" required>
+            <textarea name="UITrackInfo" placeholder="Enter track info..." id="UITrackInfo"></textarea>
+
+
+            <button type="submit" id = navi>SUBMIT</button>  
+        </form>
+    </div>
+</body>
+</html>
