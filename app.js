@@ -1,167 +1,95 @@
-// app.js
-import express from "express";
-import mariadb from 'mariadb';
-import 'dotenv/config'; 
+// Get the express package 
+const express = require('express');
 
+const mariadb = require('mariadb');
+
+// Configure the database connection
 const pool = mariadb.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database:process.env.DB_NAME,
-    port: process.env.DB_PORT
+    host: 'localhost',
+    user: 'root',
+    password: '1234',
+    database: 'reservations'
 });
 
+// Connect to the database
 async function connect() {
-  try {
-      let conn = await pool.getConnection();
-      console.log("connected to database");
-      return conn;
-  } catch (err) {
-      console.log(`Error connecting to the database: ${err}`);
-  }
+    try {
+        let conn = await pool.getConnection();
+        console.log('Connected to the database');
+        return conn;
+    } catch (err) {
+        console.log('Error connecting to the database: ' + err);
+    }
 }
 
+// Instantiate an express (web) app
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// Define a port number for the app to listen on
+const PORT = 3000;
 
-//Serve static files from the 'public' directory
-app.use(express.static("public"));
+// Tell the app to encode data into JSON format
+app.use(express.urlencoded({ extended: false }));
 
-// set the view engine for out application
+// Tell the app to use the "public" folder to serve static files
+app.use(express.static('public'));
 
+// Set your view (templating) engine to "EJS"
+// (We use a templating engine to create dynamic web pages)
 app.set('view engine', 'ejs');
-const PORT = process.env.APP_PORT || 3000;
 
-app.get("/", (req, res) => {
-  // Send our home page as a response to the client
-  res.render("home");
-});
+// Define a "default" route, 
+// e.g. jshmo.greenriverdev.com/reservation-app/
+app.get('/', (req, res) => {
+  console.log("Hello, world - server!");
 
-app.post('/', (req, res) => {
-
-  // Send our home page as a response to the client
+  // Return home page
   res.render('home');
 });
 
-app.post('/search', async (req, res) => {
-  const userInput = req.body.userInput;
-  let conn;
-
-  // Validate user input
-  if (!userInput || typeof userInput !== 'string') {
-      return res.render('home', { error: "Invalid input" });
-  }
-
-  try {
-      conn = await connect(); // Establish database connection
-
-      // Search for artists or album artists
-      const searchInput = await conn.query(
-          "SELECT * FROM album_artist WHERE ArtistName = ? OR AlbumArtist = ?",
-          [userInput, userInput]
-      );
-
-      // If no results are found, render the home page with an error message
-      if (searchInput.length === 0) {
-          return res.render('home', { error: "Artist not found" });
-      }
-
-      // Initialize an empty array for the album list
-      let retrieveAlbumList = [];
-
-      // Loop through the search results
-      for (const artist of searchInput) {
-          // Query to get album singles for each artist
-          const albumSingles = await conn.query(
-              "SELECT * FROM album_single WHERE ArtistID = ?",
-              [artist.SpecificID]
-          );
-
-          // Add the album singles to the retrieveAlbumList array
-          retrieveAlbumList.push({
-              artist,
-              albumSingles
-          });
-      }
-
-      // Log results for debugging
-      console.log("User Input:", userInput);
-      console.log("Search Result:", searchInput);
-      console.log("Album List:", retrieveAlbumList);
-
-      // Render the searchResult view with the retrieved data
-      res.render('searchResult', { retrieveAlbumList, userInput });
-  } catch (err) {
-      console.error("Database query error:", err);
-      res.render('home', { error: "An error occurred while searching" });
-  } finally {
-      if (conn) conn.release(); // Ensure the connection is released
-  }
+// Define a "confirm" route, using the GET method
+app.get('/confirm', (req, res) => {
+  // Send a response to the client
+  res.send('You need to post to this page!');
 });
 
-app.post('/list', async (req, res) => {
-    const albumID = req.body.AlbumID;
-    const imgPath = req.body.AlbumImagePath;
+// Define a "confirm" route, using the POST method
+app.post('/confirm', async (req, res) => {
+  console.log(req.body)
 
-    const trackNum = req.body.TrackNum || 1;
+  // Get the data from the form that was submitted
+  // from the body of the request object
+  const data = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      toppings: req.body.toppings
+  }
 
-    let conn;
-  
-    // Validate inputs
-    if (!albumID || !imgPath) {
-        return res.render('home', { error: "Invalid album data" });
-    }
-  
-    try {
-      conn = await connect();
-  
-      // Retrieve the AlbumName for the given AlbumID
-      const albumRetrieve = await conn.query(
-          "SELECT AlbumName FROM album_single WHERE AlbumID = ?",
-          [albumID]
-      );
-  
-      // Check if the album was found
-      if (albumRetrieve.length === 0) {
-          return res.render('home', { error: "Album not found" });
-      }
-  
-      // Extract the AlbumName from the first row
-      const albumName = albumRetrieve[0].AlbumName;
-  
-      console.log("Album Name:", albumName);
-      console.log("Album ID:", albumID);
+  console.log(data);
 
-      const trackRetrieve = await conn.query(
-        "SELECT TrackName, TrackInfo FROM track_info WHERE AlbumID = ? AND TrackNum = ?",
-        [albumID, trackNum]
-      );
-
-      let trackName = null;
-      let trackInfo = null;
-
-      if (trackRetrieve.length > 0) {
-        trackName = trackRetrieve[0].TrackName;
-        trackInfo = trackRetrieve[0].TrackInfo;
-      }
-
-      // console.log(trackRetrieve.length);
-      // console.log(trackName);
-      // console.log(trackInfo);
+  // Connect to the database
+  const conn = await connect();
   
-      // Render the trackList view with the image path and album name
-      res.render('trackInfoList', { imgPath, albumName, trackName, trackInfo });
-    } catch (err) {
-      console.error("Error rendering track list:", err);
-      res.render('home', { error: "An error occurred while loading the track list" });
-    } finally {
-      if (conn) conn.release(); // Release the connection
-    }
-  });
+  // Insert the data into the database
+  await conn.query(`INSERT INTO users (firstName, lastName) 
+    VALUES ('${data.firstName}', '${data.lastName}');`);
 
-//Tell the server to listen on our specified port
+  // Display the confirm page, pass the data
+  res.render('confirm', { details: data });
+});
+
+app.get('/confirmations', async (req, res) => {
+  // Get the data from the database
+  const conn = await connect();
+
+  // Query the database
+  const rows = await conn.query('SELECT * FROM users;');
+
+  // Display the confirm page, pass the data
+  res.render('confirmations', { confirmations: rows });
+});
+
+// Tell the app to listen for requests on the designated port
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+  console.log(`Server running on port http://localhost:${PORT}`)
 });

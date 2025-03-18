@@ -137,13 +137,12 @@ input[type="text"] {
 /* Mobile Styles */
 @media (max-width: 480px) {
   body {
-      padding: 1rem;
+    padding: 1rem;
   }
   h1 {
-      font-size: 2.5rem;
+    font-size: 2.5rem;
   }
   p {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 }
-  
