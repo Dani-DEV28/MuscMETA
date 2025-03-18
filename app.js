@@ -170,10 +170,10 @@ app.post('/admin', async (req, res) => {
   const {
     UIArtistName,
     UIAlbumName,
-    UITrackLength,
     UITrackInfo
   } = req.body;
 
+  const UITrackLength = req.body.UITrackLength || "0:00"
   const UIAlbumArtist = req.body.UIAlbumArtist || UIArtistName;
   const UITrackNum = req.body.UITrackNum || 1;
   const UITrackName = req.body.UITrackName || UIAlbumName
