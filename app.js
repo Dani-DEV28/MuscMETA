@@ -1,14 +1,16 @@
-// Get the express package 
+// app.js
 import express from "express";
 import mariadb from 'mariadb';
+import mysql from 'mysql2'
 import 'dotenv/config'; 
 
-// Configure the database connection
-const pool = mariadb.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '1234',
-    database: 'reservations'
+const pool = mysql.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database:process.env.DB_NAME,
+    port: process.env.DB_PORT,
+    connectionLimit: 20
 });
 
 async function connect() {
@@ -20,6 +22,7 @@ async function connect() {
       console.log(`Error connecting to the database: ${err}`);
   }
 }
+
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -172,11 +175,11 @@ app.post('/admin', async (req, res) => {
     UITrackInfo
   } = req.body;
 
-  const UITrackLength = req.body.UITrackLength || "0:00"
   const UIAlbumArtist = req.body.UIAlbumArtist || UIArtistName;
   const UITrackNum = req.body.UITrackNum || 1;
   const UITrackName = req.body.UITrackName || UIAlbumName
   const UIAlbumIMG = req.body.UIAlbumIMG || "/img/testIMG.png";
+  const UITrackLength = req.body.UITrackLength || "00:00:00"
 
   let conn;
 

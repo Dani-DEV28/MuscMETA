@@ -22,7 +22,8 @@
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
-    "mariadb": "^3.4.0"
+    "mariadb": "^3.4.0",
+    "mysql2": "^3.13.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
