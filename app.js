@@ -1,7 +1,6 @@
 // app.js
 import express from "express";
 import mariadb from 'mariadb';
-import mysql from 'mysql2'
 import 'dotenv/config'; 
 
 const pool = mariadb.createPool({
