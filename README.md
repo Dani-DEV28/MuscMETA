@@ -3,6 +3,7 @@
 [DB LAYOUT](docs/DBLAYOUT.md) for additional information.
 <br>
 [NEEDEDTASKSLP](docs/NEEDEDTASKSLP.md) for tasked need to add to this.
+[NEEDEDTASKSHP](docs/NEEDEDTASKSLP.md) for tasked need to add to this.
 
 ---
 
