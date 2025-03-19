@@ -178,6 +178,7 @@ app.post('/admin', async (req, res) => {
   const UITrackNum = req.body.UITrackNum || 1;
   const UITrackName = req.body.UITrackName || UIAlbumName
   const UIAlbumIMG = req.body.UIAlbumIMG || "/img/testIMG.png";
+  const UITrackLength = req.body.UITrackLength || "00:00:00"
 
   let conn;
 
