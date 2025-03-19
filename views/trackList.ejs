@@ -1,25 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicMETA</title>
-    <link rel="icon" type="image/jpg" href="img/CD-image.jpg">
-    <link rel="stylesheet" href="/styles/style.css">
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title><%= albumName %></title>
 </head>
-<body>
-    <div id = headerTitle>
-        <form action="/" method="post">
-            <button type="submit" id = navi>🔙 Go Home</button>
-        </form>
-        <H2>Album Track List</H2>
-        <button onclick="history.go(-1)" id = navi>🔙 Go Back</button>
-    </div>
-    <!-- <p>Check console log for TrackList</p> -->
-    <div id="trackInfo">
-        <img src="<%= imgPath %>" id="trackImg" alt="album cover">
-        
-    </div>
-
+<body> 
+ 
+  <h1><%= albumName %></h1> 
+  <p>Total tracks: <%= trackCount %></p> 
+  
+  
+  <h2>Track List</h2> 
+  <table> 
+    <thead> 
+      <tr> 
+        <th>Track #</th> 
+        <th>Track Name</th> 
+        <th>Duration</th> 
+      </tr>
+    </thead>
+    <tbody> 
+      <% tracks.forEach(track => { %> 
+        <tr> 
+          
+          <td><%= track.trackNum %></td> 
+          <td><%= track.TrackName %></td>
+          <td><%= track.track_length %></td>
+        </tr>
+      <% }); %> 
+    </tbody>
+  </table>
 </body>
 </html>
