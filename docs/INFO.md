@@ -26,5 +26,5 @@ MusicMetaDB aims to provide a simplified and accessible alternative to MusicBrai
 - **Processing:** The system retrieves relevant albums from the database.
 - **Output:** A list of clickable album covers that lead to detailed album metadata, including track names, durations, and artist information.
 
-For additional details on database structure and queries, refer to the [DB LAYOUT](docs/DBLAYOUT.md).
+For additional details on database structure and queries, refer to the [DB LAYOUT](DBLAYOUT.md).
 
