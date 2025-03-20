@@ -10,6 +10,36 @@ git
     <link rel="icon" type="image/jpg" href="img/CD-image.jpg">
     <link rel="stylesheet" href="/styles/style.css">
 </head>
+
+
+<body> 
+ 
+  <h1><%= albumName %></h1> 
+  <p>Total tracks: <%= trackCount %></p> 
+  
+  
+  <h2>Track List</h2> 
+  <table> 
+    <thead> 
+      <tr> 
+        <th>Track #</th> 
+        <th>Track Name</th> 
+        <th>Duration</th> 
+      </tr>
+    </thead>
+    <tbody> 
+      <% tracks.forEach(track => { %> 
+        <tr> 
+          
+          <td><%= track.trackNum %></td> 
+          <td><%= track.TrackName %></td>
+          <td><%= track.track_length %></td>
+        </tr>
+      <% }); %> 
+    </tbody>
+  </table>
+
+
 <body>
     <div id = headerTitle>
         <form action="/" method="post">
@@ -21,7 +51,7 @@ git
     <!-- <p>Check console log for TrackList</p> -->
     <div id="trackInfo">
         <img src="<%= imgPath %>" id="trackImg" alt="album cover">
-        <% if (tracks && tracks.length > 0) { %>
+          <% if (tracks && tracks.length > 0) { %>
             <!-- Track listing section -->
             <div class="track-list">
                 <!-- Display total tracks from album_single table -->
@@ -52,6 +82,18 @@ git
             <!-- Fallback content if no tracks found -->
             <p class="no-tracks">No tracks found for this album.</p>
         <% } %>
+    </div>
+
+
+        <!-- Add thing here -->
+        <% tracks.forEach(track => { %> 
+            <tr> 
+              
+              <td><%= track.trackNum %></td> 
+              <td><%= track.TrackName %></td>
+              <td><%= track.track_length %></td>
+            </tr>
+          <% }); %> 
     </div>
 
 </body>
