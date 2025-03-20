@@ -6,6 +6,7 @@
     <title>MusicMETA</title>
     <link rel="icon" type="image/jpg" href="img/CD-image.jpg">
     <link rel="stylesheet" href="/styles/style.css">
+    <script src="/validation.js"></script>
 </head>
 <body>
     <div id = headerTitle>
@@ -29,5 +30,12 @@
             <button type="submit" id = navi>SUBMIT</button>  
         </form>
     </div>
+    <% if (typeof error !== 'undefined' && error) { %>
+        <span class="err" id="err-name"><%= error %></span>
+    <% } %>
+    
+    <% if (typeof success !== 'undefined' && success) { %>
+        <span class="suc" id="suc-name"><%= success %></span>
+    <% } %>
 </body>
 </html>

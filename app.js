@@ -242,8 +242,26 @@ app.post('/admin', async (req, res) => {
 
   let conn;
 
+    if (!UIArtistName || !UIAlbumName || !UITrackNum || !UITrackLength) {
+      return res.render('admin', { error: "All fields are required", success: null });
+    }
+  
+    const trackLengthPattern = /^\d{2}:\d{2}$/;
+    if (!trackLengthPattern.test(UITrackLength)) {
+      return res.render('admin', { error: "Invalid track length format (MM:SS required)", success: null });
+    }
+
   try {
     conn = await connect();
+
+    // Check if the album already exists
+    const albumCheck = await conn.query(
+      "SELECT * FROM album_single JOIN album_artist ON album_single.ArtistID = album_artist.SpecificID WHERE album_artist.ArtistName = ? AND album_single.AlbumName = ?",
+      [UIArtistName, UIAlbumName]
+    );
+    if (albumCheck.length > 0) {
+      return res.render('admin', { error: "Error: Album already exists for this artist.", success: null });
+    }
 
     const inputArtist = await conn.query(
       "INSERT IGNORE INTO album_artist (ArtistName, AlbumArtist) VALUES(?, ?);",
@@ -269,6 +287,15 @@ app.post('/admin', async (req, res) => {
   
     const albumID = albumResult[0].AlbumID;
   
+    // Check if the track already exists
+    const trackCheck = await conn.query(
+      "SELECT * FROM track_info WHERE AlbumID = ? AND TrackNum = ?",
+      [albumID, UITrackNum]
+    );
+    if (trackCheck.length > 0) {
+      return res.render('admin', { error: "Error: Track number already exists for this album.", success: null });
+    }
+
     const inputTrackInfo = await conn.query(
       "INSERT INTO track_info (AlbumID, TrackNum, TrackName, TrackInfo, track_length) VALUES (?, ?, ?, ?, ?);",
       [albumID, UITrackNum, UITrackName, UITrackInfo, UITrackLength]
@@ -284,6 +311,8 @@ app.post('/admin', async (req, res) => {
     console.log('Track Length:', UITrackLength);
     console.log('Track Info:', UITrackInfo);
   
+    return res.render('admin', { error: null, success: "Success: Album and track added successfully!" });
+
     // Render the admin page (or redirect as needed)
     res.render('admin');
   } catch (err) {
@@ -295,6 +324,45 @@ app.post('/admin', async (req, res) => {
 
   
 });
+
+// Check if album already exists for a given artist
+app.post("/checkAlbum", async (req, res) => {
+  const { artistName, albumName } = req.body;
+  let conn;
+  try {
+      conn = await connect();
+      const result = await conn.query(
+          "SELECT * FROM album_single JOIN album_artist ON album_single.ArtistID = album_artist.SpecificID WHERE album_artist.ArtistName = ? AND album_single.AlbumName = ?",
+          [artistName, albumName]
+      );
+      res.json({ exists: result.length > 0 });
+  } catch (err) {
+      console.error("Error checking album:", err);
+      res.status(500).json({ error: "Internal server error" });
+  } finally {
+      if (conn) conn.release();
+  }
+});
+
+// Check if track number already exists for a given album
+app.post("/checkTrack", async (req, res) => {
+  const { albumName, trackNum } = req.body;
+  let conn;
+  try {
+      conn = await connect();
+      const result = await conn.query(
+          "SELECT * FROM track_info JOIN album_single ON track_info.AlbumID = album_single.AlbumID WHERE album_single.AlbumName = ? AND track_info.TrackNum = ?",
+          [albumName, trackNum]
+      );
+      res.json({ exists: result.length > 0 });
+  } catch (err) {
+      console.error("Error checking track:", err);
+      res.status(500).json({ error: "Internal server error" });
+  } finally {
+      if (conn) conn.release();
+  }
+});
+
 
 //Tell the server to listen on our specified port
 app.listen(PORT, () => {

@@ -20,7 +20,7 @@ To prevent duplicate entries and invalid data submissions by implementing valida
       - An input field is invalid or empty.
 
 4. **Use Asynchronous Requests**
-    - Use `fetch` or `axios` to send requests to the backend for validation checks.
+    - Use `fetch` to send requests to the backend for validation checks.
     - Prevent form submission until all validations pass.
 
 5. **Example Workflow**

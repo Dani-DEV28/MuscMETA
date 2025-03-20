@@ -1,10 +1,12 @@
 # MusicMETA
 
-[DB LAYOUT](docs/DBLAYOUT.md) for additional information.
-<br>
-[NEEDEDTASKSLP](docs/NEEDEDTASKSLP.md) low priority task - `NurMohamed-system`.
-<br>
-[NEEDEDTASKSHP](docs/NEEDEDTASKHP.md) high priority task - `alexborovets11`.
+## Documentation  
+- [DB Layout](docs/DBLAYOUT.md) — Additional information about the database layout.  
+
+## Tasks  
+- [ ] [Low Priority: Needed Tasks LP](docs/NEEDEDTASKSLP.md) — Assigned to `NurMohamed-system`.  
+- [x] [High Priority: Validation HP](docs/Validation-HP.md) — Assigned to `alexborovets11`.  
+- [ ] [Medium Priority: Enable Multi-Track HP](docs/EnableMultiTrack-HP.md) — Assigned to `alexborovets11`.  
 
 ---
 
