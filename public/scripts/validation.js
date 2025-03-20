@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const artistName = document.querySelector("#UIArtistName").value;
         const trackNum = document.querySelector("#UITrackNum").value;
         
-        const trackLengthPattern = /^\d{2}:\d{2}:\d{2}$/;
+        const trackLengthPattern = /^\d{2}:\d{2}$/;
         if (!trackLengthPattern.test(trackLength)) {
-            alert("Invalid track length format. Use HH:MM:SS.");
+            alert("Invalid track length format. Use HH:MM (eg., 01:30).");
             return;
         }
 

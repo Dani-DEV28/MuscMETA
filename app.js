@@ -243,12 +243,12 @@ app.post('/admin', async (req, res) => {
   let conn;
 
     if (!UIArtistName || !UIAlbumName || !UITrackNum || !UITrackLength) {
-        return res.status(400).json({ error: "All fields are required" });
+      return res.render('admin', { error: "All fields are required", success: null });
     }
-
-    const trackLengthPattern = /^\d{2}:\d{2}:\d{2}$/;
+  
+    const trackLengthPattern = /^\d{2}:\d{2}$/;
     if (!trackLengthPattern.test(UITrackLength)) {
-        return res.status(400).json({ error: "Invalid track length format (HH:MM:SS required)" });
+      return res.render('admin', { error: "Invalid track length format (HH:MM required)", success: null });
     }
 
   try {
@@ -260,7 +260,7 @@ app.post('/admin', async (req, res) => {
       [UIArtistName, UIAlbumName]
     );
     if (albumCheck.length > 0) {
-      return res.status(409).json({ error: "Album already exists for this artist" });
+      return res.render('admin', { error: "Error: Album already exists for this artist.", success: null });
     }
 
     const inputArtist = await conn.query(
@@ -293,7 +293,7 @@ app.post('/admin', async (req, res) => {
       [albumID, UITrackNum]
     );
     if (trackCheck.length > 0) {
-      return res.status(409).json({ error: "Track number already exists for this album" });
+      return res.render('admin', { error: "Error: Track number already exists for this album.", success: null });
     }
 
     const inputTrackInfo = await conn.query(
@@ -311,6 +311,8 @@ app.post('/admin', async (req, res) => {
     console.log('Track Length:', UITrackLength);
     console.log('Track Info:', UITrackInfo);
   
+    return res.render('admin', { error: null, success: "Success: Album and track added successfully!" });
+
     // Render the admin page (or redirect as needed)
     res.render('admin');
   } catch (err) {

@@ -52,6 +52,20 @@ p {
   text-align: center;
 }
 
+.err {
+  color: #ff0000;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.suc {
+  color: rgb(2, 134, 2);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
 form {
   display: flex;
   gap: 0.5rem;
