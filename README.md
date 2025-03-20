@@ -4,7 +4,9 @@
 <br>
 [NEEDEDTASKSLP](docs/NEEDEDTASKSLP.md) low priority task - `NurMohamed-system`.
 <br>
-[NEEDEDTASKSHP](docs/NEEDEDTASKHP.md) high priority task - `alexborovets11`.
+[Validation-HP](docs/Validation-HP.md) high priority task - `alexborovets11`.
+<br>
+[EnableMultiTrack-HP](docs/EnableMultiTrack-HP.md) med priority task - `alexborovets11`.
 
 ---
 
