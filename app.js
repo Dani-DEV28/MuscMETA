@@ -248,7 +248,7 @@ app.post('/admin', async (req, res) => {
   
     const trackLengthPattern = /^\d{2}:\d{2}$/;
     if (!trackLengthPattern.test(UITrackLength)) {
-      return res.render('admin', { error: "Invalid track length format (HH:MM required)", success: null });
+      return res.render('admin', { error: "Invalid track length format (MM:SS required)", success: null });
     }
 
   try {

@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         const trackLengthPattern = /^\d{2}:\d{2}$/;
         if (!trackLengthPattern.test(trackLength)) {
-            alert("Invalid track length format. Use HH:MM (eg., 01:30).");
+            alert("Invalid track length format. Use MM:SS (e.g., 03:45).");
             return;
         }
 
