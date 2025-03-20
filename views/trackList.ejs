@@ -22,31 +22,36 @@ git
     <div id="trackInfo">
         <img src="<%= imgPath %>" id="trackImg" alt="album cover">
         <% if (tracks && tracks.length > 0) { %>
-          <div class="track-list">
-              <p>Total Tracks: <%= album.TrackCount %></p>
-              <table class="track-table">
-                  <thead>
-                      <tr>
-                          <th>Track #</th>
-                          <th>Track Name</th>
-                          <th>Duration</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <% tracks.forEach(track => { %>
-                          <tr>
-                              <td><%= track.TrackNum %></td>
-                              <td><%= track.TrackName %></td>
-                              <td><%= track.track_length %></td>
-                          </tr>
-                      <% }); %>
-                  </tbody>
-              </table>
-          </div>
-      <% } else { %>
-          <p class="no-tracks">No tracks found for this album.</p>
-      <% } %>
-  
+            <!-- Track listing section -->
+            <div class="track-list">
+                <!-- Display total tracks from album_single table -->
+                <p>Total Tracks: <%= album.TrackCount %></p>
+                <table class="track-table">
+                    <thead>
+                        <tr>
+                            <!-- Table headers matching track_info columns -->
+                            <th>Track #</th>  
+                            <th>Track Name</th> 
+                            <th>Duration</th>   
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% tracks.forEach(track => { %>
+                            <!-- Dynamic table rows for each track -->
+                            <tr>
+                                <td><%= track.TrackNum %></td>
+                                <td><%= track.TrackName %></td>
+                                <!-- Display formatted time from TIME datatype -->
+                                <td><%= track.track_length %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <!-- Fallback content if no tracks found -->
+            <p class="no-tracks">No tracks found for this album.</p>
+        <% } %>
     </div>
 
 </body>
