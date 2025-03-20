@@ -2,7 +2,9 @@
 
 [DB LAYOUT](docs/DBLAYOUT.md) for additional information.
 <br>
-[NEEDEDTASKSLP](docs/NEEDEDTASKSLP.md) for tasked need to add to this.
+[NEEDEDTASKSLP](docs/NEEDEDTASKSLP.md) low priority task - `NurMohamed-system`.
+<br>
+[NEEDEDTASKSHP](docs/NEEDEDTASKHP.md) high priority task - `alexborovets11`.
 
 ---
 
