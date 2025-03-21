@@ -246,10 +246,10 @@ app.post('/admin', async (req, res) => {
       return res.render('admin', { error: "All fields are required", success: null });
     }
   
-    const trackLengthPattern = /^\d{2}:\d{2}$/;
-    if (!trackLengthPattern.test(UITrackLength)) {
-      return res.render('admin', { error: "Invalid track length format (MM:SS required)", success: null });
-    }
+    // const trackLengthPattern = /^\d{2}:\d{2}$/;
+    // if (!trackLengthPattern.test(UITrackLength)) {
+    //   return res.render('admin', { error: "Invalid track length format (MM:SS required)", success: null });
+    // }
 
   try {
     conn = await connect();
@@ -325,43 +325,43 @@ app.post('/admin', async (req, res) => {
   
 });
 
-// Check if album already exists for a given artist
-app.post("/checkAlbum", async (req, res) => {
-  const { artistName, albumName } = req.body;
-  let conn;
-  try {
-      conn = await connect();
-      const result = await conn.query(
-          "SELECT * FROM album_single JOIN album_artist ON album_single.ArtistID = album_artist.SpecificID WHERE album_artist.ArtistName = ? AND album_single.AlbumName = ?",
-          [artistName, albumName]
-      );
-      res.json({ exists: result.length > 0 });
-  } catch (err) {
-      console.error("Error checking album:", err);
-      res.status(500).json({ error: "Internal server error" });
-  } finally {
-      if (conn) conn.release();
-  }
-});
+// // Check if album already exists for a given artist
+// app.post("/checkAlbum", async (req, res) => {
+//   const { artistName, albumName } = req.body;
+//   let conn;
+//   try {
+//       conn = await connect();
+//       const result = await conn.query(
+//           "SELECT * FROM album_single JOIN album_artist ON album_single.ArtistID = album_artist.SpecificID WHERE album_artist.ArtistName = ? AND album_single.AlbumName = ?",
+//           [artistName, albumName]
+//       );
+//       res.json({ exists: result.length > 0 });
+//   } catch (err) {
+//       console.error("Error checking album:", err);
+//       res.status(500).json({ error: "Internal server error" });
+//   } finally {
+//       if (conn) conn.release();
+//   }
+// });
 
-// Check if track number already exists for a given album
-app.post("/checkTrack", async (req, res) => {
-  const { albumName, trackNum } = req.body;
-  let conn;
-  try {
-      conn = await connect();
-      const result = await conn.query(
-          "SELECT * FROM track_info JOIN album_single ON track_info.AlbumID = album_single.AlbumID WHERE album_single.AlbumName = ? AND track_info.TrackNum = ?",
-          [albumName, trackNum]
-      );
-      res.json({ exists: result.length > 0 });
-  } catch (err) {
-      console.error("Error checking track:", err);
-      res.status(500).json({ error: "Internal server error" });
-  } finally {
-      if (conn) conn.release();
-  }
-});
+// // Check if track number already exists for a given album
+// app.post("/checkTrack", async (req, res) => {
+//   const { albumName, trackNum } = req.body;
+//   let conn;
+//   try {
+//       conn = await connect();
+//       const result = await conn.query(
+//           "SELECT * FROM track_info JOIN album_single ON track_info.AlbumID = album_single.AlbumID WHERE album_single.AlbumName = ? AND track_info.TrackNum = ?",
+//           [albumName, trackNum]
+//       );
+//       res.json({ exists: result.length > 0 });
+//   } catch (err) {
+//       console.error("Error checking track:", err);
+//       res.status(500).json({ error: "Internal server error" });
+//   } finally {
+//       if (conn) conn.release();
+//   }
+// });
 
 
 //Tell the server to listen on our specified port
