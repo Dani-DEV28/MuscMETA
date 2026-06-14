@@ -1,5 +1,103 @@
 # MusicMETA V2
 
+## Specification
+
+### What It Is
+
+MusicMETA is a music metadata database with a clean, modern UI — an alternative to cluttered databases like MusicBrainz. It's for music enthusiasts, collectors, and small-label archivists who want to catalog their libraries without navigating bloated interfaces.
+
+The tool lets users:
+- Upload audio files and automatically extract embedded metadata (artist, album, track, genre, year, bitrate, codec, album artwork)
+- Browse a structured catalog: Artists → Albums → Tracks
+- Search across all entities with fuzzy, case-insensitive matching
+- Manually add or edit entries via an admin panel
+
+### How It Should Work
+
+**Flow 1: Upload & Auto-Catalog**
+1. User selects one or more audio files (or an entire folder)
+2. Each file is parsed via `music-metadata` — artist, album, track info, and embedded artwork are extracted
+3. Artist is upserted (deduplicated by name + album artist combo)
+4. Album is upserted under that artist (deduplicated by artist + album name); artwork stored as binary in DB
+5. Track is upserted under that album (deduplicated by album + track number)
+6. User sees a summary of all extracted metadata
+
+**Edge cases:**
+- Files with no embedded metadata → fallback to "Unknown Artist" / "Unknown Album"
+- Duplicate uploads → upsert logic prevents duplicates, updates metadata if tags changed
+- Album artwork only stored once per album (first file with artwork wins, subsequent uploads update it)
+- Track number collisions → upsert overwrites existing track at that position
+
+**Flow 2: Search**
+1. User types a query on the home page
+2. Client navigates to `/search?q=...` results page
+3. API performs case-insensitive `contains` search across Artist.name, Album.name, Track.name
+4. Results are displayed categorized: Artists, Albums, Tracks
+
+**Edge cases:**
+- Empty/whitespace queries → return empty, no DB hit
+- Very long queries → Prisma handles safely via parameterized queries
+- No results → display "No results found" message
+
+**Flow 3: Browse**
+- Artist page shows albums in a 3-column grid (empty placeholders fill incomplete rows)
+- Album page shows album art + track list in a two-column layout (image left, tracks right)
+- Track page shows album art + full metadata details in two-column layout
+
+**Tricky parts:**
+- Album artwork stored as `Bytes` in PostgreSQL — must be served as base64 data URIs in `<img>` tags
+- `music-metadata` returns `Uint8Array` for picture data, not `Buffer` — must convert before DB storage
+- The `albumArtist` field can be null, and the unique constraint is on `[name, albumArtist]` — Prisma handles nullable unique composites correctly but the upsert `where` must match exactly
+
+### The Stack
+
+| Layer | Choice | Why |
+|-------|--------|-----|
+| Framework | Next.js 14 (App Router) | Server Components for DB queries, API routes built-in, file-based routing |
+| Language | TypeScript | Type safety across DB ↔ API ↔ UI |
+| ORM | Prisma 5 | Type-safe queries, migrations, schema-as-code |
+| Database | PostgreSQL 16 | Reliable, supports `pg_trgm` for fuzzy search, binary storage for artwork |
+| Styling | Tailwind CSS 3 | Utility-first, matches V1 color scheme via config |
+| Testing | Vitest + React Testing Library | Fast, ESM-native, co-located component tests |
+| Metadata | `music-metadata` 10.x | Battle-tested parser for MP3, FLAC, WAV, OGG, M4A |
+| Auth | NextAuth.js 4 | Protects admin routes (future phase) |
+
+**Project structure:** `src/app/` for pages (App Router), `src/components/` for isolated UI, `src/lib/` for shared logic, `prisma/` for schema, `tests/` for global setup and E2E.
+
+### How It Should Be Tested
+
+**Unit tests (mocked dependencies):**
+- `metadata.ts` — 10 cases: all fields extracted, null handling, duration formatting/rounding, bitrate conversion, genre selection, missing picture
+- `search.ts` — 5 cases: correct Prisma query params, combined results, includes nested relations
+- `MetadataDisplay` component — 5 cases: renders all fields, hides nulls, formats bitrate
+
+**API route tests (mocked Prisma + metadata):**
+- `POST /api/upload` — 7 cases: no file → 400, correct upsert calls, fallback names, null track number → 1, picture saving, no-picture handling, hasImage flag
+- `GET /api/search` — 3 cases: empty query → empty arrays, whitespace → empty, valid query → returns results
+
+**Component tests (jsdom):**
+- `SearchBar` — submits query, navigates to search page
+- `AlbumCard` — renders name, fallback image when no artwork
+- `TrackList` — renders track names and durations
+- `UploadForm` — renders form elements
+
+**E2E (real dependencies, no mocks):**
+- Parse a real MP3 file (`sample.mp3`) with `music-metadata`
+- Verify: artist is non-empty string, track is non-empty string, duration matches `MM:SS`, bitrate is positive number, codec is non-empty, picture data exists with format string
+
+**Total: 41 tests across 10 test files.**
+
+### Constraints & Decisions
+
+- **Images in DB, not filesystem.** Album artwork is stored as `Bytes` in PostgreSQL. No file system dependency for artwork, simplifies deployment and backup.
+- **No file storage.** Audio files are parsed in memory and discarded — only metadata is persisted.
+- **Color scheme preserved.** V1 colors carried forward: `#1e1e1e` (background), `#ff6600` (accent), `#ffffff` (text), `#2a2a2a` (secondary), `#dddddd` (muted).
+- **PostgreSQL required.** Docker container provided in setup guide. No SQLite fallback.
+- **No client-side state management library.** React state + server components are sufficient for this scope.
+- **Avoid:** ORMs that generate SQL at runtime without type safety, CSS-in-JS libraries, file-based image storage, client-side routing libraries (Next.js handles it).
+
+---
+
 A music metadata database with a clean, modern UI — an alternative to cluttered databases like MusicBrainz.
 
 ---
