@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import { extractMetadata } from '@/lib/metadata';
 
-const mp3Path = path.resolve(__dirname, '../../01 - Ironmouse - Hell Again.mp3');
+const mp3Path = path.resolve(__dirname, '../../sample.mp3');
 const buffer = readFileSync(mp3Path);
 
 describe('extractMetadata (real MP3 file)', () => {
