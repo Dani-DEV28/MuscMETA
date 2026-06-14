@@ -310,12 +310,4 @@ npm run build
 }
 ```
 
----
 
-## V1 Reference
-
-The original V1 implementation (Express + EJS + MariaDB) remains in this repo for reference:
-- `app.js` — All routes and DB logic
-- `views/` — EJS templates
-- `SQL/` — MariaDB schema and test data
-- `docs/` — Original task docs and wireframes
