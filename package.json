@@ -1,30 +1,35 @@
 {
-  "name": "musicmeta-final",
-  "version": "1.0.0",
-  "main": "app.js",
-  "type": "module",
+  "name": "muscmeta-v2",
+  "version": "2.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Dani-DEV28/MuscMETA.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Dani-DEV28/MuscMETA/issues"
-  },
-  "homepage": "https://github.com/Dani-DEV28/MuscMETA#readme",
-  "description": "",
   "dependencies": {
-    "dotenv": "^16.4.7",
-    "ejs": "^3.1.10",
-    "express": "^4.21.2",
-    "mariadb": "^3.4.0"
+    "@prisma/client": "5.22.0",
+    "music-metadata": "10.6.1",
+    "next": "14.2.18",
+    "next-auth": "4.24.11",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react": "16.1.0",
+    "@types/node": "22.10.1",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "10.4.20",
+    "jsdom": "25.0.1",
+    "postcss": "8.4.49",
+    "prisma": "5.22.0",
+    "tailwindcss": "3.4.16",
+    "typescript": "5.7.2",
+    "vitest": "2.1.8"
   }
 }
